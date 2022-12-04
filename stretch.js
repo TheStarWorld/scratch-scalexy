@@ -1,10 +1,7 @@
 (function(Scratch) {
   'use strict';
   const vm = Scratch.vm;
-  
-  var scalex = 0;
-  var scaley = 0;
-  
+
   class morescale {
     getInfo () {
       return {
@@ -25,7 +22,17 @@
                 defaultValue: 100
               }
             }
-          }
+          },
+		  {
+			  opcode: 'getWidth',
+			  blockType: Scratch.BlockType.REPORTER,
+			  text: 'width'
+		  },
+		  {
+			  opcode: 'getHeight',
+			  blockType: Scratch.BlockType.REPORTER,
+			  text: 'height'
+		  }
         ]
       };
     }
@@ -50,6 +57,21 @@
             }
         }
     }
+	
+	getWidth (args, util) {
+		if (typeof util.target.scalex == 'undefined') {
+			util.target.scalex = 100
+			util.target.scaley = 100
+		}
+		return util.target.scalex;
+	}
+	getHeight (args, util) {
+		if (typeof util.target.scaley == 'undefined') {
+			util.target.scalex = 100
+			util.target.scaley = 100
+		}
+		return util.target.scaley;
+	}
 	
 	
   }
