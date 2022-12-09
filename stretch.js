@@ -41,16 +41,12 @@
 		util.target.scalex = args["SIZEX"];
 		util.target.scaley = args["SIZEY"];
         if (util.target.renderer) {
-			const props = {};
 			
 			let finalScale = [util.target.size * util.target.scalex / 100, util.target.size * util.target.scaley / 100];
 			if (util.target.rotationStyle === 'left-right' && util.target.direction < 0) {
 				finalScale[0] *= -1;
 			}
-			
-			props.scale = finalScale;
-			
-			util.target.renderer.updateDrawableProperties(util.target.drawableID, props);
+			util.target.renderer.updateDrawableProperties(util.target.drawableID, {scale: finalScale});
 			
             if (util.target.visible) {
                 util.target.runtime.requestRedraw();
@@ -60,15 +56,15 @@
 	
 	getWidth (args, util) {
 		if (typeof util.target.scalex == 'undefined') {
-			util.target.scalex = 100
-			util.target.scaley = 100
+			util.target.scalex = 100;
+			util.target.scaley = 100;
 		}
 		return util.target.scalex;
 	}
 	getHeight (args, util) {
 		if (typeof util.target.scaley == 'undefined') {
-			util.target.scalex = 100
-			util.target.scaley = 100
+			util.target.scalex = 100;
+			util.target.scaley = 100;
 		}
 		return util.target.scaley;
 	}
